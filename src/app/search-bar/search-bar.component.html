@@ -1,0 +1,6 @@
+<div class="search__container">
+    <form class="search__form" (keypress.enter)="onSubmit()" (ngSubmit)="onSubmit()" #form="ngForm">
+        <span class="search__logo" routerLink="/">Rawg</span>
+        <input autocomplete="off" name="search" class="search__input" placeholder="Find your game!" [(ngModel)]="input">
+    </form>
+</div>
