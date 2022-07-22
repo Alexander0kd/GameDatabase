@@ -1,11 +1,53 @@
-<div class="div1">
-  <h4>mat-select</h4>
-  <mat-form-field appearance="fill">
-    <mat-label>Choose an option</mat-label>
-    <mat-select>
-      <mat-option value="option1">Option 1</mat-option>
-      <mat-option value="option2">Option 2 (disabled)</mat-option>
-      <mat-option value="option3">Option 3</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="home">
+  <div class="home__header">
+    <h4 class="title">
+      New games
+    </h4>
+    <div class="sort">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Order by:</mat-label>
+        <mat-select [(ngModel)]="sort" panelClass="sort-select">
+          <mat-option value="name">Name</mat-option>
+          <mat-option value="date">Release date</mat-option>
+          <mat-option value="rating">Rating</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="home__body">
+    <div class="cards">
+
+      <div class="card" *ngFor="let i of tmp">
+        <div class="card__img">
+          <img src="https://place-hold.it/256x256">
+        </div>
+
+        <div class="card__platforms">
+          <img class="platform" src="https://place-hold.it/32x32/">
+          <img class="platform" src="https://place-hold.it/32x32/">
+          <img class="platform" src="https://place-hold.it/32x32/">
+        </div>
+        <div class="card__name">
+          <a routerLink="/details/32">
+            Lorem ipsum dolor sit amet.
+          </a>
+        </div>
+        <div class="card__hiden">
+          <div class="card__detail">
+            Release date: <span class="detail-right">Lorem, ipsum dolor.</span>
+          </div>
+          <div class="card__detail">
+            Genres: <span class="detail-right">Lorem, ipsum dolor.</span>
+          </div>
+          <div class="card__detail">
+            Chart: <span class="detail-right">Lorem, ipsum dolor.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -1,0 +1,164 @@
+.home__header {
+  margin-top: 50px;
+}
+
+.title {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 74px;
+  text-transform: capitalize;
+}
+
+::ng-deep {
+
+  .mat-form-field-flex {
+    border-radius: 8px !important;
+  }
+
+  .mat-select-value {
+    color: #FFFFFF !important;
+
+    transition: color .2s linear;
+
+    &:hover,
+    &:active {
+      color: #949494 !important;
+    }
+
+  }
+
+  .mat-option {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+
+    transition: background-color .2s linear;
+
+    &:hover {
+      background-color: #e5e5e5 !important;
+    }
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-select-arrow,
+  .mat-form-field-label {
+    color: #949494 !important;
+  }
+}
+
+// body
+
+.home__body {
+    margin-top: 25px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+  max-width: 23%;
+  min-width: 300px;
+  width: 100%;
+
+  position: relative;
+
+  background-color: #202020;
+
+  display: flex;
+  flex-direction: column;   
+  flex: 1 auto;
+
+  &:hover>.card__hiden {
+    display: block;
+  }
+}
+
+.card__img {
+
+  & img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 256px;
+
+    object-fit: cover;
+  }
+
+  &:hover>.card__hiden {
+    display: block;
+  }
+}
+
+.card__platforms {
+  padding: 10px 10px 0px 10px;
+
+  & .platform:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
+.card__name {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+
+  padding: 10px;
+
+  & a {
+    transition: color .2s linear;
+    cursor: pointer;
+    text-decoration: none;
+    color: #FFFFFF;
+
+    &:hover {
+      color: #949494;
+    }
+  }
+}
+
+.card__hiden {
+  display: none;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+
+  background-color: #202020;
+  padding: 10px;
+
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.card__detail {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #ffffff66;
+
+  color: #ffffff66;
+  line-height: 36px;
+
+  &:last-child {
+    border-bottom: 0px;
+  }
+
+  & .detail-right {
+    max-width: 75%;
+    text-align: right;
+    color: #FFFFFF;
+  }
+  
+}
