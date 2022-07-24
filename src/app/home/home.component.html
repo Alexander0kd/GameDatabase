@@ -7,10 +7,14 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Order by:</mat-label>
-        <mat-select [(ngModel)]="sort" panelClass="sort-select">
+        <mat-select [(ngModel)]="sort" panelClass="sort-select" (selectionChange)="searchGames(sort)">
           <mat-option value="name">Name</mat-option>
-          <mat-option value="date">Release date</mat-option>
-          <mat-option value="rating">Rating</mat-option>
+          <mat-option value="-released">Released</mat-option>
+          <mat-option value="-added">Added</mat-option>
+          <mat-option value="-created">Created</mat-option>
+          <mat-option value="-updated">Updated</mat-option>
+          <mat-option value="-rating">Rating</mat-option>
+          <mat-option value="metacritic">Metacritic</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -20,34 +24,40 @@
   <div class="home__body">
     <div class="cards">
 
-      <div class="card" *ngFor="let i of tmp">
-        <div class="card__img">
-          <img src="https://place-hold.it/256x256">
-        </div>
+      <ng-container *ngFor="let game of games">
+        <div class="card">
+          <div class="card__img">
+            <img *ngIf="game.background_image" src="{{ game.background_image }}">
+            <img *ngIf="!game.background_image" src="https://place-hold.it/256x256&text=NoImage">
+          </div>
 
-        <div class="card__platforms">
-          <img class="platform" src="https://place-hold.it/32x32/">
-          <img class="platform" src="https://place-hold.it/32x32/">
-          <img class="platform" src="https://place-hold.it/32x32/">
-        </div>
-        <div class="card__name">
-          <a routerLink="/details/32">
-            Lorem ipsum dolor sit amet.
-          </a>
-        </div>
-        <div class="card__hiden">
-          <div class="card__detail">
-            Release date: <span class="detail-right">Lorem, ipsum dolor.</span>
+          <div class="card__platforms">
+            <img *ngFor="let plat of game.parent_platforms" class="platform"
+              src="./../../assets/{{plat.platform.slug}}.svg">
           </div>
-          <div class="card__detail">
-            Genres: <span class="detail-right">Lorem, ipsum dolor.</span>
+          <div class="card__name">
+            <a routerLink="/details/{{game.id}}">
+              {{ game.name }}
+            </a>
           </div>
-          <div class="card__detail">
-            Chart: <span class="detail-right">Lorem, ipsum dolor.</span>
+          <div class="card__hiden">
+            <div class="card__detail">
+              Release date: <span class="detail-right"> {{game.released | date: 'mediumDate' }} </span>
+            </div>
+            <div class="card__detail">
+              Genres:
+              <span class="detail-right">
+                <span *ngFor="let g of game.genres; let i = index">
+                  {{g.name}}{{ i === game.genres.length - 1 ? '' : ','}}
+                </span>
+              </span>
+            </div>
+            <div class="card__detail">
+              Metacritic: <span class="detail-right"> {{game.metacritic}} </span>
+            </div>
           </div>
         </div>
-      </div>
-
+      </ng-container>
     </div>
   </div>
 </div>
