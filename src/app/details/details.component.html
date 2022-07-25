@@ -1,6 +1,69 @@
-<div class="details">
-    <div class="details__header">
-        <p> {{ game.name }} </p>
-        <p> <img src="{{ game.background_image }} "> </p>
+<div class="details" *ngIf="game">
+  <div class="details__wrapper">
+    <div class="details__info">
+
+      <p class="info__platforms">Platforms:
+        <span *ngFor="let platform of game.parent_platforms; let i = index">
+          {{platform.platform.name}}{{ i === game.parent_platforms.length - 1 ? '' : ','}}
+        </span>
+      </p>
+
+      <p class="info__publisher">Publisher:
+        <span *ngFor="let publisher of game.publishers; let i = index">
+          {{publisher.name}}{{ i === game.publishers.length - 1 ? '' : ','}}
+        </span>
+      </p>
+
+      <p class="info__description">
+        <span [innerHTML]="game.description"></span>
+      </p>
+
+      <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Screenshots" *ngIf="game.screenshots.length != 0">
+
+          <div class="details__screenshots">
+            <div class="details__screenshot" *ngFor="let screen of game.screenshots">
+              <img src="{{screen.image}}">
+            </div>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Trailers" *ngIf="game.trailers.length != 0">
+
+          <div class="details__trailers">
+            <div class="details__trailer" *ngFor="let trailer of game.trailers">
+              <video controls poster="{{trailer.preview}}">
+                <source src="{{trailer.data.max}}">
+              </video>
+            </div>
+          </div>
+
+        </mat-tab>
+      </mat-tab-group>
+
     </div>
+
+    <div class="details__sidebar">
+      <img src="{{ game.background_image }} ">
+      <div class="sidebar__info">
+
+        <p class="details__name">{{ game.name }}</p>
+        <p class="details__released">{{ game.released | date: 'mediumDate' }}</p>
+
+        <p class="details__genres" *ngIf="game.genres.length != 0">Genres:
+          <span *ngFor="let g of game.genres; let i = index">{{ g.name }}{{ i === game.genres.length - 1 ? '' : ','}}
+          </span>
+        </p>
+
+
+        <p class="details__meta-title" *ngIf="game.metacritic">Metacritic score:</p>
+        <span class="details__metacritic" *ngIf="game.metacritic" [class.good]="game.metacritic >= 75"
+          [class.normal]="game.metacritic < 75 && game.metacritic >= 50" [class.bad]="game.metacritic < 50">
+          {{ game.metacritic }}
+        </span>
+
+      </div>
+    </div>
+  </div>
+
 </div>

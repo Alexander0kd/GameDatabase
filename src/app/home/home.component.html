@@ -1,9 +1,14 @@
 <div class="home">
   <div class="home__header">
-    <h4 class="title">
+    <h4 class="title" *ngIf="!isSearch">
       New games
     </h4>
-    <div class="sort">
+
+    <h4 class="title" *ngIf="isSearch">
+      What we find
+    </h4>
+
+    <div class="sort" *ngIf="!isSearch">
 
       <mat-form-field appearance="fill">
         <mat-label>Order by:</mat-label>
@@ -58,6 +63,8 @@
           </div>
         </div>
       </ng-container>
+
+
     </div>
   </div>
 </div>

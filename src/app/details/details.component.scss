@@ -1,3 +1,103 @@
-.details__header {
-    margin-top: 50px;
+.details {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.details__wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.details__info {
+  max-width: 75%;
+  width: 100%;
+}
+
+.info__platforms {
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.info__publisher {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.info__description {
+    margin-top: 20px;
+}
+
+.details__sidebar {
+  max-width: 25%;
+  width: 100%;
+
+  margin-left: 100px;
+
+  & img {
+    width: 100%;
+  }
+}
+
+.sidebar__info {
+  margin-top: 20px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details__genres {
+  margin-top: 10px;
+}
+
+.details__meta-title {
+  margin-top: 25px;
+  font-weight: 500;
+}
+
+.details__metacritic {
+  font-size: 24px;
+
+  padding: 15px;
+  
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+
+  border-radius: 100%;
+  border: 1px solid #FFFFFF;
+  text-align: center;
+
+  &.good {
+    background-color: #66cc33;
+    border-color: #66cc33;
+  }
+
+  &.normal {
+    background-color: #ffcc33;
+    border-color: #ffcc33;
+  }
+
+  &.bad {
+    background-color: #ff0000;
+    border-color: #ff0000;
+  }
+
+}
+
+.details__name {
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.details__screenshot img {
+  width: 100%;
+}
+
+.details__trailer video {
+  width: 100%;
 }

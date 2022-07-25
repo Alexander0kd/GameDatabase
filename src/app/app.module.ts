@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { DetailsComponent } from './details/details.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DetailsComponent } from './details/details.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     {

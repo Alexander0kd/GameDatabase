@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../http.service';
 import { APIResponse, Game } from '../modules';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-details',
@@ -28,8 +29,6 @@ export class DetailsComponent implements OnInit {
     this.httpService.getGameDetails(id).subscribe(
       (resp: Game) => {
         this.game = resp;
-        
-        console.log(this.game);
       }
     );
   }
