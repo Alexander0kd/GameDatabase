@@ -57,10 +57,10 @@
 
 
         <p class="details__meta-title" *ngIf="game.metacritic">Metacritic score:</p>
-        <span class="details__metacritic" *ngIf="game.metacritic" [class.good]="game.metacritic >= 75"
+        <a href="{{game.metacritic_url}}" class="details__metacritic" *ngIf="game.metacritic" [class.good]="game.metacritic >= 75"
           [class.normal]="game.metacritic < 75 && game.metacritic >= 50" [class.bad]="game.metacritic < 50">
           {{ game.metacritic }}
-        </span>
+        </a>
 
       </div>
     </div>

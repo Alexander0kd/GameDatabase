@@ -11,11 +11,11 @@ import { APIResponse, Game } from '../modules';
 
 export class HomeComponent implements OnInit {
 
-  public sort: string = '';
+  public sort: string = 'metacrit';
   public games!: Array<Game>;
   public isSearch?: string;
 
-  private page: number = 1;
+  public page: number = 1;
   private end: boolean = false;
   
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute) { }
@@ -26,30 +26,41 @@ export class HomeComponent implements OnInit {
         this.isSearch = params['game-search']; 
         
         if(params['game-search']) {
-          this.searchGames('metacrit', params['game-search']);
+          this.page = 1;
+          this.end = true;
+          this.searchGames(this.sort, 0, params['game-search']);
         } else {
-          this.searchGames('metacrit');
+          this.page = 1;
+          this.end = true;
+          this.searchGames(this.sort, 0);
         }
 
       }
     );
   }
 
-  public searchGames(sort: string, search?: string): void {
+  // 0 -> search | clear arr, page = 1
+  // 1 -> sort | clear arr, page = 1
+  // 2 -> scroll | append, page++
+
+  public searchGames(sort: string, type: number, search?: string): void {
     this.httpService.getGameList(sort, this.page, search).subscribe(
       (gameList: APIResponse<Game>) => {
-        this.games = gameList.results;
 
-        // if (this.games) {
-        //   this.games = this.games.concat(gameList.results);
-        //   this.page++;
-        //   this.end = false;
-        // }
-        // else {
-        //   this.games = gameList.results;
-        //   this.page++;
-        //   this.end = false;
-        // }
+        console.log('Pagination page: ' + this.page);
+        console.log('Sort type: ' + sort);
+        console.log('Request type: ' + type + ' [' + (type === 2 ? 'scroll]' : (type === 1 ? 'sort]' : 'search]')));
+        console.log('Search: ' + search);
+        console.log('-----------');
+
+        if (type == 2) {
+          this.games = this.games.concat(gameList.results);
+        }
+        else {
+          this.games = gameList.results;
+        }
+
+        this.end = false;
 
       }
     );
@@ -64,6 +75,7 @@ export class HomeComponent implements OnInit {
       ) 
     {
       this.page++;
+      this.searchGames(this.sort, 2, this.isSearch);
       this.end = true;
     }
 
