@@ -16,7 +16,9 @@ export class HomeComponent implements OnInit {
   public isSearch?: string;
 
   public page: number = 1;
-  private end: boolean = false;
+  public end: boolean = false;
+
+  public load: boolean = false;
   
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute) { }
 
@@ -24,44 +26,29 @@ export class HomeComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         this.isSearch = params['game-search']; 
-        
+        this.load = true;
+        this.page = 1;
+        this.end = true;
         if(params['game-search']) {
-          this.page = 1;
-          this.end = true;
           this.searchGames(this.sort, 0, params['game-search']);
         } else {
-          this.page = 1;
-          this.end = true;
           this.searchGames(this.sort, 0);
         }
-
       }
     );
   }
 
-  // 0 -> search | clear arr, page = 1
-  // 1 -> sort | clear arr, page = 1
-  // 2 -> scroll | append, page++
-
   public searchGames(sort: string, type: number, search?: string): void {
     this.httpService.getGameList(sort, this.page, search).subscribe(
       (gameList: APIResponse<Game>) => {
-
-        console.log('Pagination page: ' + this.page);
-        console.log('Sort type: ' + sort);
-        console.log('Request type: ' + type + ' [' + (type === 2 ? 'scroll]' : (type === 1 ? 'sort]' : 'search]')));
-        console.log('Search: ' + search);
-        console.log('-----------');
-
+        this.load = false;
         if (type == 2) {
           this.games = this.games.concat(gameList.results);
         }
         else {
           this.games = gameList.results;
         }
-
         this.end = false;
-
       }
     );
   }
@@ -69,16 +56,15 @@ export class HomeComponent implements OnInit {
   @HostListener("document:scroll")
   public onScroll(): void {
     if(
-      this.end == false && (
+      this.end == false && 
+        (
           (document.documentElement.scrollHeight - document.documentElement.scrollTop) <= (document.documentElement.clientHeight + 100)
         )
       ) 
     {
       this.page++;
-      this.searchGames(this.sort, 2, this.isSearch);
       this.end = true;
+      this.searchGames(this.sort, 2, this.isSearch);
     }
-
   }
-
 }

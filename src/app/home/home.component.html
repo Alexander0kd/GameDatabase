@@ -12,7 +12,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Order by:</mat-label>
-        <mat-select [(ngModel)]="sort" panelClass="sort-select" (selectionChange)="searchGames(sort, 1); page = 1">
+        <mat-select [(ngModel)]="sort" panelClass="sort-select" (selectionChange)="searchGames(sort, 1); page = 1; load = true;">
           <mat-option value="-name">Name</mat-option>
           <mat-option value="-released">Released</mat-option>
           <mat-option value="-added">Added</mat-option>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="home__body">
+  <div class="home__body" *ngIf="!load">
     <div class="cards">
 
       <ng-container *ngFor="let game of games">
@@ -67,4 +67,14 @@
 
     </div>
   </div>
+
+  <div class="loader" *ngIf="load">
+    <div class="load"></div>
+  </div>
+
+  <div class="loader-bottom" *ngIf="end && !load">
+    <div class="load bottom"></div>
+  </div>
+
+
 </div>
