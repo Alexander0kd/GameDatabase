@@ -45,6 +45,7 @@
 
     <div class="details__sidebar">
       <img src="{{ game.background_image }} ">
+      
       <div class="sidebar__info">
 
         <p class="details__name">{{ game.name }}</p>
@@ -57,12 +58,13 @@
 
 
         <p class="details__meta-title" *ngIf="game.metacritic">Metacritic score:</p>
-        <a href="{{game.metacritic_url}}" class="details__metacritic" *ngIf="game.metacritic" [class.good]="game.metacritic >= 75"
+        <a target="_blank" href="{{game.metacritic_url}}" class="details__metacritic" *ngIf="game.metacritic" [class.good]="game.metacritic >= 75"
           [class.normal]="game.metacritic < 75 && game.metacritic >= 50" [class.bad]="game.metacritic < 50">
           {{ game.metacritic }}
         </a>
 
       </div>
+
     </div>
   </div>
 

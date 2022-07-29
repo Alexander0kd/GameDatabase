@@ -264,3 +264,23 @@
     transform: rotate(360deg);
   }
 }
+
+//
+
+@media (max-width: 1580px) {
+  .card {
+    max-width: 32%;
+  }
+}
+
+@media (max-width: 1050px) {
+  .card {
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 650px) {
+  .card {
+    max-width: 90%;
+  }
+}

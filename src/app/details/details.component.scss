@@ -11,8 +11,10 @@
 }
 
 .details__info {
-  max-width: 75%;
+  max-width: 70%;
   width: 100%;
+
+  margin-right: 50px;
 }
 
 .info__platforms {
@@ -22,19 +24,17 @@
 }
 
 .info__publisher {
-    font-size: 24px;
-    font-weight: 300;
+  font-size: 24px;
+  font-weight: 300;
 }
 
 .info__description {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .details__sidebar {
-  max-width: 25%;
+  max-width: 30%;
   width: 100%;
-
-  margin-left: 100px;
 
   & img {
     width: 100%;
@@ -63,15 +63,23 @@
   font-size: 24px;
   text-decoration: none;
   padding: 15px;
-  
+
   color: #FFFFFF;
   background-color: #FFFFFF;
 
+  width: 56px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   border-radius: 100%;
   border: 1px solid #FFFFFF;
   text-align: center;
 
   transition: transform .2s linear;
+
   &:hover {
     transform: scale(1.05);
   }
@@ -105,4 +113,38 @@
 
 .details__trailer video {
   width: 100%;
+}
+
+
+//
+
+@media (max-width: 1024px) {
+  .details__sidebar {
+    max-width: 40%;
+  }
+
+  .details__info {
+    max-width: 60%;
+    margin-right: 25px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .details__info {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .details__sidebar {
+    max-width: 100%;
+  }
+
+  .details__wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .details__info {
+    margin-top: 30px;
+  }
 }

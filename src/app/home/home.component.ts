@@ -42,10 +42,11 @@ export class HomeComponent implements OnInit {
     this.httpService.getGameList(sort, this.page, search).subscribe(
       (gameList: APIResponse<Game>) => {
         this.load = false;
-        if (type == 2) {
+        if (type == 1) {
           this.games = this.games.concat(gameList.results);
         }
         else {
+          scroll(0, 0);
           this.games = gameList.results;
         }
         this.end = false;
@@ -64,7 +65,7 @@ export class HomeComponent implements OnInit {
     {
       this.page++;
       this.end = true;
-      this.searchGames(this.sort, 2, this.isSearch);
+      this.searchGames(this.sort, 1, this.isSearch);
     }
   }
 }
