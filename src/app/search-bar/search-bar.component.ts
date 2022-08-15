@@ -16,7 +16,7 @@ export class SearchBarComponent implements OnInit {
   public input: string = '';  
 
   private searchTerms = new Subject<string>();
-  public gameList!: Array<Game>;
+  public gameList: Array<Game> = [];
 
   public onInput(inp: string): void {
     this.searchTerms.next(inp);
@@ -37,7 +37,6 @@ export class SearchBarComponent implements OnInit {
       this.httpService.getGameList('metacrit', 1, changes, 5).subscribe(
         (gameList: APIResponse<Game>) => {
           this.gameList = gameList.results;
-          console.log(this.gameList);
         }
       );
 
@@ -54,7 +53,7 @@ export class SearchBarComponent implements OnInit {
     setTimeout(() => {
       let list = document.getElementById('search__res') as HTMLElement;
         list.style.display = set;
-    }, 100);
+    }, 200);
   }
 
 }
