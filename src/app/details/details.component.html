@@ -44,7 +44,8 @@
     </div>
 
     <div class="details__sidebar">
-      <img src="{{ game.background_image }} ">
+      <img *ngIf="game.background_image" src="{{ game.background_image }}">
+      <img *ngIf="!game.background_image" src="https://place-hold.it/256x256&text=NoImage">
       
       <div class="sidebar__info">
 

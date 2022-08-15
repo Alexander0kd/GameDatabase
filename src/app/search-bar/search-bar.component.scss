@@ -22,6 +22,60 @@
 
   display: flex;
   align-items: center;
+
+  position: relative;
+}
+
+.search__box {
+  width: 100%;
+  height: 70%;
+  margin-left: 25px;
+  position: relative;
+}
+
+.search__result {
+  position: absolute;
+
+  left: 0;
+  top: 140%;
+  width: 100%;
+  z-index: 10000;
+
+  & li {
+
+    background-color: #000000;
+    color: #ffffff99;
+    padding: 20px 32px;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    transition: all .2s linear;
+
+    &:hover {
+      background-color: #1f1f1f;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+
+    &:first-child {
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+    }
+  }
+}
+
+.preview__img {
+  max-width: 48px;
+  height: auto;
+}
+
+.preview__title {
+  margin-left: 16px;
 }
 
 .search__logo {
@@ -34,9 +88,8 @@
 
 .search__input {
   width: 100%;
-  height: 70%;
+  height: 100%;
 
-  margin-left: 25px;
   padding: 0 16px 0 38px;
 
   background: url("./../../assets/search-light.svg") no-repeat scroll 16px;
@@ -44,6 +97,7 @@
 
   border: none;
   border-radius: 50px;
+
   outline: none;
 
   color: #ffffff99;
@@ -67,6 +121,18 @@
       color: #3b3b3b;
     }
   }
+}
+
+.search__more {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.see-more {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
 }
 
 @media (max-width: 500px) {

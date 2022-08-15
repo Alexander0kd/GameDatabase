@@ -1,6 +1,33 @@
 <div class="search__container">
-    <form class="search__form" (keypress.enter)="onSubmit()" (ngSubmit)="onSubmit()" #form="ngForm">
-        <span class="search__logo" routerLink="/">Rawg</span>
-        <input autocomplete="off" name="search" class="search__input" placeholder="Find your game!" [(ngModel)]="input">
-    </form>
+
+  <form class="search__form" (keypress.enter)="onSubmit()" (ngSubmit)="onSubmit()" #form="ngForm">
+    <span class="search__logo" routerLink="/">Rawg</span>
+
+    <div class="search__box">
+      <input autocomplete="off" name="search" #searchbox class="search__input" placeholder="Find your game!"
+        (input)="onInput(searchbox.value)" [(ngModel)]="input" (focus)="triggerList('block')"
+        (focusout)="triggerList('none')">
+
+      <div class="search__result" id="search__res">
+        <ul>
+          <li *ngFor="let game of gameList" routerLink="/details/{{game.id}}">
+            <img *ngIf="game.background_image" src="{{ game.background_image }}" class="preview__img"
+              routerLink="/details/{{game.id}}">
+            <img *ngIf="!game.background_image" src="https://place-hold.it/256x256&text=NoImage" class="preview__img"
+              routerLink="/details/{{game.id}}">
+            <span class="preview__title" routerLink="/details/{{game.id}}"> {{game.name}} </span>
+          </li>
+
+          <li (click)="onSubmit()" *ngIf="gameList.length">
+            <span class="search__more">
+                See more <img src="./../../assets/arrow-right.svg" class="see-more">
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  </form>
+
 </div>
